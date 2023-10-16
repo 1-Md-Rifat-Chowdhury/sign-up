@@ -1,35 +1,58 @@
-
 'use client'
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import signUp from '../../../public/signup.svg'
 
 const SignUp = () => {
+
+    const [info, setinfo] = useState ('');
+    const handleSubmit = (e) =>
+    {
+        e.preventDefault();
+        const form = e.target;
+        
+        const name = form.name.value;
+        const email = form.email.value;
+        const phone = form.phone.value;
+        const country = form.country.value;
+
+        const updateInfo=
+        {
+            name,
+            email,
+            phone,
+            country,
+        }
+        setinfo(updateInfo)
+    }
+    console.log(info)
+
     return (
         <div className='bg-blue-200 h-screen flex justify-center items-center gap-6 flex-col'>
             <h2 className='mb-5 font-bold text-3xl'>Sign Up</h2>
-            <div className='p-10  flex bg-  justify-center items-center gap-6'>
+            <div className=' bg-slate-600 w-1/2 p-10  flex  justify-center items-center gap-6 '>
 
-                <form className=''>
+                <form onSubmit={handleSubmit} className=''>
+                    <p>Name:</p>
+                    <input type='text'name='name' className='mb-5 rounded-lg text-xs h-6 w-full placeholder:text-xs ps-2 focus:outline-none' placeholder='name' />
 
+                    <p>Email</p>
+                    <input type='email'name='email' className=' mb-5 rounded-lg text-xs h-6 w-full placeholder:text-xs ps-2 focus:outline-none' placeholder='example@gmail.com' />
 
-                    <div>
-                        <p>Name:</p>
-                        <input className='mb-5 rounded-lg placeholder:text-xs ps-2' placeholder='name' />
-                    </div>
-                    <div>
-                        <p>Email</p>
-                        <input className=' mb-5 rounded-lg placeholder:text-xs ps-2' placeholder='name' />
-                    </div>
-                    <div>
-                        <p>Phone</p>
-                        <input className=' mb-5 rounded-lg placeholder:text-xs ps-2' placeholder='name' />
-                    </div>
-                    <div>
-                        <p>Country</p>
-                        <input className='rounded-lg placeholder:text-xs ps-2' placeholder='name' />
-                    </div>
+                    <p>Phone</p>
+                    <input type='text'name='phone' className=' mb-5 rounded-lg text-xs h-6 w-full placeholder:text-xs ps-2 focus:outline-none' placeholder='+880 174-781-0390' />
 
+                    <p>Country</p>
+                    <select name='country' className='rounded-lg w-56 te focus:outline-none  text-xs h-6'>
+                        <option >Afganistan</option>
+                        <option> Bangladesh</option>
+                        <option> Russsia</option>
+                        <option> Palestin</option>
+                    </select>
+
+                    <button className=' rounded-lg font-semibold bg-blue-500 w-24 block mt-5 focus:outline-none '>
+                        Submit
+                    </button>
 
                 </form>
 
